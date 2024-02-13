@@ -1,0 +1,676 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "NWC Tools",
+    "description": "API For NWC Tooklit",
+    "version": "0.0.0"
+  },
+  "host": "nwctools.azurewebsites.net",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/api/v1.0/readexcel": {
+      "post": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Read Excel",
+        "operationId": "readexcel",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "Excel File",
+            "required": true,
+            "type": "file",
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1.0/base64decodefile": {
+      "post": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Decode a Base64 File",
+        "operationId": "base64decodefile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Request",
+            "in": "body",
+            "description": "Base64 String",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1.0/base64decodestring": {
+      "post": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Decode a Base64 String",
+        "operationId": "base64decodestring",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Request",
+            "in": "body",
+            "description": "Base64 Decoded String",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1.0/base64encodefile": {
+      "post": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Encode a Base64 File",
+        "operationId": "base64encodefile",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "File to Encode",
+            "required": true,
+            "type": "file",
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1.0/base64encodestring": {
+      "post": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Encode Base64 String",
+        "operationId": "base64encodestring",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Request",
+            "in": "body",
+            "description": "String to Encode",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1.0/datetimeformat": {
+      "post": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Format DateTime",
+        "operationId": "datetimeformat",
+        "consumes": [
+          "application/json",
+          "multipart/form-data",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "DateFormat",
+            "in": "query",
+            "description": "Date Format",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "Date",
+            "in": "query",
+            "description": "Date",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1.0/generateguid": {
+      "post": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Generateguid",
+        "operationId": "generateguid",
+        "consumes": [
+          "application/json",
+          "multipart/form-data",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1.0/PostgresqlInsert": {
+      "post": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Postgresql Insert new Row",
+        "operationId": "postgresqlInsert",
+        "consumes": [
+          "application/json",
+          "multipart/form-data",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Password",
+            "in": "header",
+            "description": "Password",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "Query",
+            "in": "header",
+            "description": "Query",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "ServerHost",
+            "in": "header",
+            "description": "ServerHost",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "User",
+            "in": "header",
+            "description": "User",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "DBName",
+            "in": "header",
+            "description": "DBName",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "Port",
+            "in": "header",
+            "description": "Port",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1.0/PostgresqlList": {
+      "get": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Postgresql List Table",
+        "operationId": "postgresqlList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Password",
+            "in": "header",
+            "description": "Password",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "Query",
+            "in": "header",
+            "description": "Query",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "ServerHost",
+            "in": "header",
+            "description": "ServerHost",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "User",
+            "in": "header",
+            "description": "User",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "DBName",
+            "in": "header",
+            "description": "DBName",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "Port",
+            "in": "header",
+            "description": "Port",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "Targetcolumn",
+            "in": "query",
+            "description": "Targetcolumn",
+            "required": true,
+            "type": "string",
+            "x-example": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1.0/stringpadding": {
+      "post": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Add Padding to String",
+        "operationId": "stringpadding",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Request",
+            "in": "body",
+            "description": "String",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "description": "Direction",
+            "required": true,
+            "type": "string",
+            "x-example": "r"
+          },
+          {
+            "name": "padchar",
+            "in": "query",
+            "description": "Padchar",
+            "required": true,
+            "type": "string",
+            "x-example": "r"
+          },
+          {
+            "name": "totalWidth",
+            "in": "query",
+            "description": "Total width",
+            "required": true,
+            "type": "string",
+            "x-example": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1.0/stringtolower": {
+      "post": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Convert String To Lowercase",
+        "operationId": "stringtolower",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Request",
+            "in": "body",
+            "description": "String to Lower",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1.0/stringtoproper": {
+      "post": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Convert String To Proper",
+        "operationId": "stringtoproper",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Request",
+            "in": "body",
+            "description": "String to Proper",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1.0/stringtoupper": {
+      "post": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Convert String To Uppercase",
+        "operationId": "stringtoupper",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Request",
+            "in": "body",
+            "description": "String to Upper",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1.0/WorkingDaysSimpleCalc": {
+      "post": {
+        "tags": [
+          "Web"
+        ],
+        "description": "Working days simple calc",
+        "operationId": "WorkingDaysSimpleCalc",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "WorkingDaysSimpleCalc",
+            "in": "body",
+            "description": "Add Start Date and End Date to calculate working days.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WorkingDaysSimpleCalc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            },
+            "examples": {
+              "application/json": {
+                "result": "2",
+                "error": null
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "definitions": {
+    "WorkingDaysSimpleCalc": {
+      "description": "Model for WorkingDaysSimpleCalc",
+      "required": [
+        "endDate"
+      ],
+      "properties": {
+        "endDate": {
+          "type": "string",
+          "x-example": "12/27/2022 01:00:00am"
+        },
+        "startDate": {
+          "type": "string",
+          "x-example": "12/23/2022 01:00:00am"
+        }
+      }
+    },
+    "Result": {
+      "description": "Model for Result",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "x-example": ""
+        },
+        "result": {
+          "type": "string",
+          "x-example": "SGV5IHdoYXRzIGdvaW5nIG9u"
+        }
+      }
+    },
+    "Request": {
+      "description": "Model for Request",
+      "required": [
+        "content"
+      ],
+      "properties": {
+        "content": {
+          "type": "string",
+          "x-example": "Does this work. I think it does"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {},
+  "security": [],
+  "tags": [
+    {
+      "name": "Web",
+      "description": "Operations about Web"
+    }
+  ]
+}
