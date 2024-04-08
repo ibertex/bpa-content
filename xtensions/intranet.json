@@ -1,0 +1,1714 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Iberostar Intranet Services",
+    "description": ""
+  },
+  "host": "services.iberostar.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/ISF.Services/api/Center": {
+      "get": {
+        "tags": [
+          "Center"
+        ],
+        "description": "Get center by ID",
+        "operationId": "getCenterById",
+        "summary": "Get center by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "centerID",
+            "in": "query",
+            "description": "Center ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CenterWec"
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/Center/{source}": {
+      "post": {
+        "tags": [
+          "Center"
+        ],
+        "description": "Get centers by source",
+        "operationId": "getCentersBySource",
+        "summary": "Get centers by source",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CenterTypeFilter"
+            }
+          },
+          {
+            "name": "source",
+            "in": "path",
+            "description": "Source",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Center"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/Center/all": {
+      "post": {
+        "tags": [
+          "Center"
+        ],
+        "description": "Get all centers",
+        "operationId": "getAllCenters",
+        "summary": "Get all centers",
+        "consumes": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CenterTypeFilter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Center"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/Center/complex": {
+      "get": {
+        "tags": [
+          "Center"
+        ],
+        "description": "Get complex by code",
+        "operationId": "getComplexByCode",
+        "summary": "Get complex by code",
+        "produces": [
+          "plain/text"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "compcodi",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/Center/getCenterDirector": {
+      "get": {
+        "tags": [
+          "Center"
+        ],
+        "description": "Get center director",
+        "operationId": "getCenterDirector",
+        "summary": "Get center director",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "centCodi",
+            "type": "string",
+            "description": "Center ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Director"
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/Center/getCentersByComplexWEC": {
+      "get": {
+        "tags": [
+          "Center"
+        ],
+        "description": "Get centers by complex WEC",
+        "operationId": "getCentersByComplexWec",
+        "summary": "Get centers by complex WEC",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "complexId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CenterWec"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/Center/getCentersWEC": {
+      "get": {
+        "tags": [
+          "Center"
+        ],
+        "description": "Get centers WEC",
+        "operationId": "getCentersWec",
+        "summary": "Get centers WEC",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Complex"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/Center/getComplexesWEC": {
+      "get": {
+        "tags": [
+          "Center"
+        ],
+        "description": "Get complexes WEC",
+        "operationId": "getComplexesWec",
+        "summary": "Get complexes WEC",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Complex"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/costscenters": {
+      "post": {
+        "tags": [
+          "Costs Centers"
+        ],
+        "description": "Get all costs centers",
+        "operationId": "getAllCostsCenters",
+        "summary": "Get all costs centers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CostCenter"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/costscenters/{costCenterId}": {
+      "post": {
+        "tags": [
+          "Costs Centers"
+        ],
+        "description": "Get cost center by ID",
+        "operationId": "getCostCenterById",
+        "summary": "Get cost center by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "costCenterId",
+            "in": "path",
+            "description": "Cost Center ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/costscenters/user": {
+      "post": {
+        "tags": [
+          "Costs Centers"
+        ],
+        "description": "Get costs centers by user",
+        "operationId": "getCostsCentersByUser",
+        "summary": "Get costs centers by user",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CostCenterUserFilter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserCostsCenters"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/departments": {
+      "get": {
+        "tags": [
+          "Departments"
+        ],
+        "description": "Get departments",
+        "operationId": "getDepartments",
+        "summary": "Get departments",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "departmentId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "centcodi",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Department"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/employees": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "Get all employees",
+        "operationId": "getAllEmployees",
+        "summary": "Get all employees",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EmployeesResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/employees/getDismissedEmployee": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "Get dismissed employee",
+        "operationId": "getDismissedEmployee",
+        "summary": "Get dismissed employee",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "employeeId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Employee"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/employees/user/{userId}": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "Get employee by user ID",
+        "operationId": "getEmployeesByUserId",
+        "summary": "Get employee by user ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EmployeeUser"
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/employees/user/role/{roleId}": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "Get users by role",
+        "operationId": "getUsersByRole",
+        "summary": "Get users by role",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "description": "Role ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/employees/user/society/{userId}": {
+      "post": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "Get users by society",
+        "operationId": "getUsersBySociety",
+        "summary": "Get users by society",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/SocietyFilter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/languages": {
+      "get": {
+        "tags": [
+          "Languages"
+        ],
+        "description": "Get language",
+        "operationId": "getLanguages",
+        "summary": "Get language",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Language"
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/locations/getAll": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "description": "Get all locations",
+        "operationId": "getAllLocations",
+        "summary": "Get all locations",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Location"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/providers": {
+      "get": {
+        "tags": [
+          "Providers"
+        ],
+        "description": "Get all providers",
+        "operationId": "getAllProviders",
+        "summary": "Get all providers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Provider"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Providers"
+        ],
+        "description": "Filter providers",
+        "operationId": "filterProviders",
+        "summary": "Filter providers",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ProviderFilter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Provider"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/providers/{providerId}": {
+      "get": {
+        "tags": [
+          "Providers"
+        ],
+        "description": "Get provider",
+        "operationId": "getProvider",
+        "summary": "Get provider",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "description": "Provider ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Provider"
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/societies": {
+      "post": {
+        "tags": [
+          "Societies"
+        ],
+        "description": "Get societies",
+        "operationId": "getSocieties",
+        "summary": "Get societies",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Society"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/systems": {
+      "get": {
+        "tags": [
+          "Systems"
+        ],
+        "description": "Get systems",
+        "operationId": "getSystems",
+        "summary": "Get systems",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/System"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/treatments": {
+      "post": {
+        "tags": [
+          "Treatments"
+        ],
+        "description": "Get treatments",
+        "operationId": "getTreatments",
+        "summary": "Get treatments",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {},
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Treatment"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Get all users",
+        "operationId": "getUsers",
+        "summary": "Get all users",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/users/{userId}/currencyid": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Get user currency ID",
+        "operationId": "getUserCurrencyid",
+        "summary": "Get user currency ID",
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/users/appRolUsers": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Get users by application and role",
+        "operationId": "getAppRolUsers",
+        "summary": "Get users by application and role",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "applicationId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "rol",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/users/getCecoChanges": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "users/getCecoChanges",
+        "operationId": "getCeCoChanges",
+        "summary": "users/getCecoChanges",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/users/getResponsibleUsers": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Get responsible users",
+        "operationId": "getResponsibleUsers",
+        "summary": "Get responsible users",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/users/getUniqueId/{userId}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Get user unique ID",
+        "operationId": "getUniqueId",
+        "summary": "Get user unique ID",
+        "produces": [
+          "plain/text"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/users/getUserId": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Get user ID",
+        "operationId": "getUserId",
+        "summary": "Get user ID",
+        "produces": [
+          "plain/text"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "usercodi",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/users/getUserWithProfile": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Get users with profile",
+        "operationId": "getUsersWithProfile",
+        "summary": "Get users with profile",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "applicationId",
+            "type": "integer",
+            "format": "int32",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "rol",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/users/responsibleId": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Get responsible ID",
+        "operationId": "getResponsibleId",
+        "summary": "Get responsible ID",
+        "produces": [
+          "plain/text"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "integer",
+            "format": "int32",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+                "type": "integer",
+                "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "/ISF.Services/api/users/rolPerfils": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "users/rolPerfils",
+        "operationId": "getUsersRolPerfils",
+        "summary": "users/rolPerfils",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "apliId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RoleProfile"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connection/certification/api/connections/511930760/validate": {
+      "get": {
+        "parameters": [
+          {
+            "in": "header",
+            "name": "secret",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Connection Validation"
+        ],
+        "description": "connection/certification/api/connections/{cnx}/validate",
+        "operationId": "connectionCertificationApiConnectionsCnxValidate",
+        "summary": "connection/certification/api/connections/{cnx}/validate"
+      }
+    },
+    "/connection/production/api/connections/360800605/validate": {
+      "get": {
+        "parameters": [
+          {
+            "in": "header",
+            "name": "secret",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Connection Validation"
+        ],
+        "description": "connection/production/api/connections/{cnx}/validate",
+        "operationId": "connectionProductionApiConnectionsCnxValidate",
+        "summary": "connection/production/api/connections/{cnx}/validate"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Center",
+      "description": ""
+    },
+    {
+      "name": "Costs Centers",
+      "description": ""
+    },
+    {
+      "name": "Departments",
+      "description": ""
+    },
+    {
+      "name": "Employees",
+      "description": ""
+    },
+    {
+      "name": "Languages",
+      "description": ""
+    },
+    {
+      "name": "Locations",
+      "description": ""
+    },
+    {
+      "name": "Providers",
+      "description": ""
+    },
+    {
+      "name": "Societies",
+      "description": ""
+    },
+    {
+      "name": "Systems",
+      "description": ""
+    },
+    {
+      "name": "Treatments",
+      "description": ""
+    },
+    {
+      "name": "Users",
+      "description": ""
+    },
+    {
+      "name": "Connection Validation",
+      "description": ""
+    }
+  ],
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "abbreviation": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "centerId": {
+          "type": "string"
+        },
+        "departmentId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "locationId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "email": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "usersurname": {
+          "type": "string"
+        },
+        "employeeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "languageId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "RoleProfile": {
+      "type": "object",
+      "properties": {
+        "rolPerfId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "perfId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rolPerfAbrev": {
+          "type": "string"
+        },
+        "rolPerfDesc": {
+          "type": "string"
+        },
+        "rolPerNom": {
+          "type": "string"
+        }
+      }
+    },
+    "Treatment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "short": {
+          "type": "string"
+        },
+        "medium": {
+          "type": "string"
+        },
+        "long": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        }
+      }
+    },
+    "System": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Society": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sapCode": {
+          "type": "string"
+        }
+      }
+    },
+    "Provider": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "cif": {
+          "type": "string"
+        },
+        "sapCode": {
+          "type": "string"
+        }
+      }
+    },
+    "ProviderFilter": {
+      "type": "object",
+      "properties": {
+        "ProviderIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "codi": {
+          "type": "string"
+        },
+        "centerId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "adress": {
+          "type": "string"
+        },
+        "population": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "provinceCode": {
+          "type": "string"
+        },
+        "telephone": {
+          "type": "string"
+        },
+        "fax": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "string"
+        }
+      }
+    },
+    "Language": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isoId": {
+          "type": "string"
+        },
+        "sfId": {
+          "type": "string"
+        }
+      }
+    },
+    "Employee": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "abbreviation": {
+          "type": "string"
+        },
+        "salutation": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "birthDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "identityDocument": {
+          "type": "string"
+        },
+        "nationality": {
+          "type": "string"
+        },
+        "countryIso3": {
+          "type": "string"
+        },
+        "personalEmail": {
+          "type": "string"
+        },
+        "personalPhone": {
+          "type": "string"
+        },
+        "userAbbreviation": {
+          "type": "string"
+        },
+        "centcodi": {
+          "type": "string"
+        },
+        "departmentName": {
+          "type": "string"
+        },
+        "departmentId": {
+          "type": "string"
+        },
+        "gusUserCodi": {
+          "type": "string"
+        },
+        "workEmailAddress": {
+          "type": "string"
+        },
+        "responsibleId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "EmployeesResponse": {
+      "type": "object",
+      "properties": {
+        "cacheTimestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Employee"
+          }
+        }
+      }
+    },
+    "EmployeeUser": {
+      "type": "object",
+      "properties": {
+        "uniqueId": {
+          "type": "string"
+        },
+        "societyId": {
+          "type": "string"
+        },
+        "responsibleId": {
+          "type": "string"
+        },
+        "responsibleName": {
+          "type": "string"
+        }
+      }
+    },
+    "SocietyFilter": {
+      "type": "object",
+      "properties": {
+        "SocietyIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "RequestorRolId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Department": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "centerId": {
+          "type": "string"
+        }
+      }
+    },
+    "CostCenter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sap": {
+          "type": "string"
+        },
+        "display": {
+          "type": "string"
+        }
+      }
+    },
+    "CostCenterUserFilter": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "UserCostsCenters": {
+      "type": "object",
+      "properties": {
+        "costCenters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CostCenter"
+          }
+        },
+        "defaultCostCenterId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "CenterTypeFilter": {
+      "type": "object",
+      "properties": {
+        "centerTypes": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "Center": {
+      "type": "object",
+      "properties": {
+        "centAbrev": {
+          "type": "string"
+        },
+        "centNom": {
+          "type": "string"
+        },
+        "centcodi": {
+          "type": "string"
+        },
+        "nivel": {
+          "type": "number",
+          "format": "float"
+        },
+        "tipoCodi": {
+          "type": "string"
+        },
+        "tipoNom": {
+          "type": "string"
+        },
+        "baja": {
+          "type": "number",
+          "format": "float"
+        },
+        "pais": {
+          "type": "string"
+        },
+        "area": {
+          "type": "string"
+        },
+        "destino": {
+          "type": "string"
+        },
+        "zona": {
+          "type": "string"
+        },
+        "dirOperaciones": {
+          "type": "string"
+        },
+        "dirRegional": {
+          "type": "string"
+        }
+      }
+    },
+    "Director": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userCodi": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "langId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "email": {
+          "type": "string"
+        },
+        "inactive": {
+          "type": "boolean"
+        },
+        "domain": {
+          "type": "string"
+        }
+      }
+    },
+    "Complex": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pais": {
+          "type": "string"
+        },
+        "zona": {
+          "type": "string"
+        },
+        "desti": {
+          "type": "string"
+        },
+        "dirOperaciones": {
+          "type": "string"
+        },
+        "dirRegional": {
+          "type": "string"
+        },
+        "area": {
+          "type": "string"
+        }
+      }
+    },
+    "CenterWec": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "abbreviation": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "complexId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

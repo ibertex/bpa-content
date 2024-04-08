@@ -1,0 +1,234 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Google Drive API allows clients to access resources from Google Drive.",
+    "version": "v3",
+    "title": "Google Drive API"
+  },
+  "host": "www.googleapis.com",
+  "basePath": "/drive/v3",
+  "tags": [
+    {
+      "name": "files",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://developers.google.com/drive/api/reference/rest/v3/files"
+      }
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/files": {
+      "get": {
+        "summary": "Get list of all documents",
+        "description": "Get list of documents",
+        "operationId": "getFiles",
+        "produces": [
+          "application/json"
+        ],
+        "x-ntx-visibility": "internal",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "x-ntx-summary": "Source file type",
+            "required": true,
+            "type": "string",
+            "default": "mimeType='application/vnd.google-apps.spreadsheet'",
+            "enum": [
+              "mimeType='application/vnd.google-apps.document'",
+              "mimeType='application/vnd.google-apps.spreadsheet'",
+              "mimeType= 'application/vnd.google-apps.presentation'"
+            ],
+            "description": "Select the appropriate file type for source document. Google Docs = application/vnd.google-apps.document; Google Sheets = application/vnd.google-apps.spreadsheet; Google Slides = application/vnd.google-apps.presentation"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "x-ntx-visibility": "internal",
+            "type": "integer",
+            "default": 1000
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ReturnedFiles"
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "https://www.googleapis.com/auth/drive.readonly"
+            ]
+          }
+        ]
+      }
+    },
+    "/files/{fileId}/copy": {
+      "post":{
+        "tags": [
+          "files"
+        ],
+        "summary": "Copy a file",
+        "description": "Creates a copy of a file and applies any requested updates with patch semantics.",
+        "operationId": "drive.files.copy",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileId",
+            "x-ntx-summary": "File",
+            "in": "path",
+            "description": "The ID of the file.",
+            "required": true,
+            "type": "string",
+            "x-ntx-dynamic-values": {
+              "operationId": "getFiles",
+              "value-collection": "files",
+              "value-path": "id",
+              "value-title": "name"
+            }
+          },
+          {
+            "name": "enforceSingleParent",
+            "description": "Deprecated. Copying files into multiple folders is no longer supported. Use shortcuts instead.",
+            "default": "false",
+            "in": "query",
+            "type": "boolean"
+          },
+          {
+            "name": "ignoreDefaultVisibility",
+            "description": "Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.",
+            "default": "false",
+            "in": "query",
+            "type": "boolean"
+          },
+          {
+            "name": "keepRevisionForever",
+            "description": "Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.",
+            "default": "false",
+            "in": "query",
+            "type": "boolean"
+          },
+          {
+            "name": "ocrLanguage",
+            "description": "A language hint for OCR processing during image import (ISO 639-1 code).",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "supportsAllDrives",
+            "description": "Whether the requesting application supports both My Drives and shared drives.",
+            "default": "false",
+            "in": "query",
+            "type": "boolean"
+          },
+          {
+            "name": "supportsTeamDrives",
+            "description": "Deprecated: Use `supportsAllDrives` instead.",
+            "default": "false",
+            "in": "query",
+            "type": "boolean"
+          },
+          {
+            "name": "includePermissionsForView",
+            "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "includeLabels",
+            "description": "A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/File"
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "https://www.googleapis.com/auth/drive",
+              "https://www.googleapis.com/auth/drive.appdata",
+              "https://www.googleapis.com/auth/drive.file",
+              "https://www.googleapis.com/auth/drive.photos.readonly"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "oauth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+      "tokenUrl": "https://oauth2.googleapis.com/token",
+      "flow": "accessCode",
+      "scopes": {
+        "https://www.googleapis.com/auth/drive": "See, edit, create, and delete all of your Google Drive files",
+        "https://www.googleapis.com/auth/drive.appdata": "See, create, and delete its own configuration data in your Google Drive",
+        "https://www.googleapis.com/auth/drive.apps.readonly": "View your Google Drive apps",
+        "https://www.googleapis.com/auth/drive.file": "See, edit, create, and delete only the specific Google Drive files you use with this app",
+        "https://www.googleapis.com/auth/drive.metadata": "View and manage metadata of files in your Google Drive",
+        "https://www.googleapis.com/auth/drive.metadata.readonly": "See information about your Google Drive files",
+        "https://www.googleapis.com/auth/drive.photos.readonly": "View the photos, videos and albums in your Google Photos",
+        "https://www.googleapis.com/auth/drive.readonly": "See and download all your Google Drive files",
+        "https://www.googleapis.com/auth/drive.scripts": "Modify your Google Apps Script scripts' behavior"
+      }
+    }
+  },
+  "definitions": {
+    "ReturnedFiles": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/File"
+          }
+        }
+      }
+    },
+    "File": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Output only. Identifies what kind of resource this is. Value: the fixed string `\"drive#file\"`.",
+          "default": "drive#file"
+        },
+        "id": {
+          "type": "string",
+          "description": "The ID of the file."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the file. This is not necessarily unique within a folder. Note that for immutable items such as the top level folders of shared drives, My Drive root folder, and Application Data folder the name is constant."
+        },
+        "mime-type": {
+          "type": "string",
+          "description": "The MIME type of the file. Google Drive attempts to automatically detect an appropriate value from uploaded content, if no value is provided. The value cannot be changed unless a new revision is uploaded. If a file is created with a Google Doc MIME type, the uploaded content is imported, if possible. The supported import formats are published in the About resource."
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "API documentation",
+    "url": "https://developers.google.com/drive/"
+  }
+}

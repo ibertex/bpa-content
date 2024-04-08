@@ -1,0 +1,348 @@
+{
+  "swagger": "2.0",
+  "info": {
+        "version": "1.0.0",
+        "title": "Iberostar Black Box",
+        "description": "Iberostar Black Box Service"
+  },
+  "host": "services.iberostar.com",
+  "basePath": "/BlackBox/api",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/email/verify": {
+      "post": {
+        "summary": "Verify email",
+        "description": "Validate and verify an email",
+        "operationId": "verifyEmail",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "type": "string",
+            "in": "header",
+            "description": "Username"
+          },
+          {
+            "name": "password",
+            "type": "string",
+            "in": "header",
+            "description": "Password"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "description": "Payload",
+            "schema": {
+              "$ref": "#/definitions/emailVerificationPayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/emailVerificationInfo"
+            }
+          }
+        }
+      }
+    },
+    "/phone/validate": {
+      "post": {
+        "summary": "Validate phone",
+        "description": "Validate a phone number",
+        "operationId": "validatePhone",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "type": "string",
+            "in": "header",
+            "description": "Username"
+          },
+          {
+            "name": "password",
+            "type": "string",
+            "in": "header",
+            "description": "Password"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "description": "Payload",
+            "schema": {
+              "$ref": "#/definitions/phoneValidationPayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/phoneValidationInfo"
+            }
+          }
+        }
+      }
+    },
+    "/identity/validate": {
+        "post": {
+            "summary": "Validate identity",
+            "description": "Validate an identity card number",
+            "operationId": "validateIdentity",
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "name": "username",
+                    "type": "string",
+                    "in": "header",
+                    "description": "Username"
+                },
+                {
+                    "name": "password",
+                    "type": "string",
+                    "in": "header",
+                    "description": "Password"
+                },
+                {
+                    "name": "payload",
+                    "in": "body",
+                    "description": "Payload",
+                    "schema": {
+                        "$ref": "#/definitions/identityValidationPayload"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/identityValidationInfo"
+                    }
+                }
+            }
+        }
+    }
+  },
+  "definitions": {
+    "emailVerificationPayload": {
+      "type": "object",
+      "required": [
+        "Email",
+        "FixTypos"
+      ],
+      "properties": {
+        "Email": {
+          "type": "string"
+        },
+        "FixTypos": {
+          "type": "boolean"
+        }
+      }
+    },
+    "emailVerificationInfo": {
+      "type": "object",
+      "properties": {
+        "Valid": {
+          "type": "boolean"
+        },
+        "Verified": {
+          "type": "boolean"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "TyposFixed": {
+          "type": "boolean"
+        },
+        "SyntaxError": {
+          "type": "boolean"
+        },
+        "DomainError": {
+          "type": "boolean"
+        },
+        "Domain": {
+          "type": "string"
+        },
+        "Provider": {
+          "type": "string"
+        },
+        "IsFreeMail": {
+          "type": "boolean"
+        },
+        "IsDisposable": {
+          "type": "boolean"
+        },
+        "IsPersonal": {
+          "type": "boolean"
+        },
+        "SmtpStatus": {
+          "type": "string"
+        },
+        "SmtpResponse": {
+          "type": "string"
+        },
+        "isDeferred": {
+          "type": "boolean"
+        },
+        "isCatchAll": {
+          "type": "boolean"
+        },
+        "StatusValue": {
+          "type": "string"
+        },
+        "ErrorList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/errorItem"
+          }
+        }
+      }
+    },
+    "phoneValidationPayload": {
+      "type": "object",
+      "required": [
+        "Number",
+        "CountryCode"
+      ],
+      "properties": {
+        "Number": {
+          "type": "string"
+        },
+        "CountryCode": {
+          "type": "string"
+        }
+      }
+    },
+    "phoneValidationInfo": {
+      "type": "object",
+      "properties": {
+        "Valid": {
+          "type": "boolean"
+        },
+        "Type": {
+          "type": "string"
+        },
+        "IsMobile": {
+          "type": "boolean"
+        },
+        "Location": {
+          "type": "string"
+        },
+        "CountryCode": {
+          "type": "string"
+        },
+        "InternationalCallingCode": {
+          "type": "string"
+        },
+        "InternationalNumber": {
+          "type": "string"
+        },
+        "LocalNumber": {
+          "type": "string"
+        },
+        "StatusValue": {
+          "type": "string"
+        },
+        "ErrorList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/errorItem"
+          }
+        }
+      }
+    },
+    "identityValidationPayload": {
+        "type": "object",
+        "required": [
+            "Number",
+            "Name",
+            "Cp",
+            "CountryCode"
+        ],
+        "properties": {
+            "Number": {
+                "type": "string"
+            },
+            "Name": {
+                "type": "string"
+            },
+            "Cp": {
+                "type": "string"
+            },
+            "CountryCode": {
+                "type": "string"
+            },
+            "IsPerson": {
+                "type": "string"
+            }
+        }
+    },
+    "identityValidationInfo": {
+        "type": "object",
+        "properties": {
+            "IsValid": {
+                "type": "boolean"
+            },
+            "NumberType": {
+                "type": "integer"
+            },
+            "IsAEATNIFValid": {
+                "type": "boolean"
+            },
+            "IsAEATNameValid": {
+                "type": "boolean"
+            },
+            "AEATName": {
+                "type": "string"
+            },
+            "VIESCountryCode": {
+                "type": "string"
+            },
+            "VIESVatNumber": {
+                "type": "string"
+            },
+            "VIESRequestDate": {
+                "type": "string"
+            },
+            "VIESName": {
+                "type": "string"
+            },
+            "VIESAddress": {
+                "type": "string"
+            },
+            "StatusValue": {
+                "type": "string"
+            },
+            "ErrorList": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/errorItem"
+                }
+            }
+        }
+    },
+    "errorItem": {
+        "type": "object",
+        "properties": {
+          "ErrorCode": {
+            "type": "integer"
+          },
+          "ErrorDetail": {
+            "type": "string"
+          }
+        }
+    }
+  }
+}
